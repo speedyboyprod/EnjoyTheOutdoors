@@ -1,5 +1,8 @@
 const mountainSelector = document.getElementById("mountainOptions");
-const mountainInfoDiv = document.getElementById("mountainInfo");
+
+const mountainTable = document.getElementById("mountainTable");
+const mountainTBody = document.getElementById("mountainInfo");
+
 const mountainImgDiv = document.getElementById("mountainImg");
 
 //Add Options
@@ -12,13 +15,46 @@ mountainsArray.forEach((mountain) => {
 mountainSelector.addEventListener("change", () => {
   let selectedMountain = mountainSelector.value;
   if (!selectedMountain) {
+    mountainTBody.innerHTML = " ";
     return;
   }
+  const currentMountain = mountainsArray.filter(
+    (mount) => mount.name === selectedMountain
+  );
+
+  displayMtnTable(mountainTable, currentMountain);
 });
 
-//Add functions to add information and image
-function addMtInfo() {
-  mountainsArray.forEach((mountain) => {});
+function displayMtnTable(table, mountainsArray) {
+  emptyTable(table);
+
+  mountainsArray.forEach((mountain) => {
+    addMtTable(table, mountain);
+  });
 }
 
+function emptyTable(table) {
+  const tbody = table.querySelector("tbody");
+  tbody.innerHTML = " ";
+}
+
+//Add functions to add information and image
+//Add table
+function addMtTable(table, mountain) {
+  const tbody = table.querySelector("tbody");
+  const row = tbody.insertRow();
+
+  const cellMtnName = row.insertCell();
+  cellMtnName.innerHTML = `${mountain.name}`;
+
+  const cellMtnDescr = row.insertCell();
+  cellMtnDescr.innerHTML = `${mountain.desc}`;
+
+  const cellMtnElevation = row.insertCell();
+  cellMtnElevation.innerHTML = `${mountain.elevation}`;
+
+  const cellMtnEffort = row.insertCell();
+  cellMtnEffort.innerHTML = `${mountain.effort}`;
+}
+//Add img function
 function addMtnImg() {}

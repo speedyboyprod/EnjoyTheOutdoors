@@ -23,6 +23,9 @@ selectByLocale.addEventListener("change", () => {
     parkInfo.innerHTML = "";
     return;
   }
+  if (selectByType) {
+    selectByType.value = "";
+  }
 
   const currentParkLocale = nationalParksArray.filter(
     (park) => park.State === selectedLocation
@@ -37,6 +40,11 @@ selectByType.addEventListener("change", () => {
     parkInfo.innerHTML = " ";
     return;
   }
+
+  if (selectByLocale) {
+    selectByLocale.value = "";
+  }
+
   const currentParkType = nationalParksArray.filter((park) =>
     park.LocationName.includes(selectedType)
   );
@@ -72,6 +80,13 @@ function parkLocaleTable(table, park) {
 
   const cellCord = row.insertCell();
   cellCord.innerHTML = `${park.Longitude}, ${park.Latitude}`;
+
+  if (park.Address === 0) {
+    cellAddress.innerHTML = `Information unavailable, ${park.City}, ${park.State}`;
+  }
+  if (park.Phone === 0) {
+    cellContact.innerHTML = `Information unavailable, ${park.Fax}`;
+  }
 }
 
 //Page will include: LocationName, Address, City, State, Zipcode, and Phone#
