@@ -1,20 +1,38 @@
 body {
-    margin: 15px;
+  margin: 15px;
 }
 
 ul {
-  list-style-type: none;  
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
 }
 
 a {
-    display: block;
-    text-decoration: none;
+  display: block;
+  text-decoration: none;
+}
+
+p {
+  padding: 1em;
+  margin: 0;
 }
 
 li {
-    display: block;
+  display: block;
 }
 
 td {
-    border: black 1px solid;
+  border: black 1px solid;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: auto;
+  max-width: 100%;
+  transition: 0.5 ease;
+}
+
+.card-img-top:hover {
+  filter: brightness(35%);
 }
