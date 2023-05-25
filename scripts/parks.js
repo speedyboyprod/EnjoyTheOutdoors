@@ -105,5 +105,4 @@ function parkInfoTable(table, park) {
     cellWebsite.innerHTML = ``;
   }
 }
-
 //Page will include: LocationName, Address, City, State, Zipcode, and Phone#
