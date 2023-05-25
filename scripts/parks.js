@@ -37,7 +37,7 @@ selectByLocale.addEventListener("change", () => {
 selectByType.addEventListener("change", () => {
   const selectedType = selectByType.value;
   if (!selectedType) {
-    parkInfo.innerHTML = " ";
+    parkInfo.innerHTML = "";
     return;
   }
 
@@ -56,7 +56,7 @@ function displayTable(table, nationalParksArray) {
   emptyTable(table);
 
   nationalParksArray.forEach((park) => {
-    parkLocaleTable(table, park);
+    parkInfoTable(table, park);
   });
 }
 
@@ -65,7 +65,7 @@ function emptyTable(table) {
   tbody.innerHTML = " ";
 }
 
-function parkLocaleTable(table, park) {
+function parkInfoTable(table, park) {
   const tbody = table.querySelector("tbody");
   const row = tbody.insertRow();
 
@@ -75,17 +75,34 @@ function parkLocaleTable(table, park) {
   const cellAddress = row.insertCell();
   cellAddress.innerHTML = `${park.Address}, ${park.City}, ${park.State}`;
 
-  const cellContact = row.insertCell();
-  cellContact.innerHTML = `${park.Phone}, ${park.Fax}`;
+  const cellPhoneNum = row.insertCell();
+  cellPhoneNum.innerHTML = `${park.Phone}`;
 
   const cellCord = row.insertCell();
   cellCord.innerHTML = `${park.Longitude}, ${park.Latitude}`;
 
+  //make the website links work
+  const cellWebsite = row.insertCell();
+
+  //got this method from: https://stackoverflow.com/questions/816431/create-link-in-an-html-table-with-javascript
+  const aTag = document.createElement("a");
+  aTag.setAttribute("href", park.Visit);
+  aTag.setAttribute("target", "_blank");
+  const siteText = document.createTextNode(park.Visit);
+
+  aTag.appendChild(siteText);
+  cellWebsite.appendChild(aTag);
+  //
+
+  //if statements for the table data
   if (park.Address === 0) {
     cellAddress.innerHTML = `Information unavailable, ${park.City}, ${park.State}`;
   }
   if (park.Phone === 0) {
-    cellContact.innerHTML = `Information unavailable, ${park.Fax}`;
+    cellPhoneNum.innerHTML = ``;
+  }
+  if (!park.Visit) {
+    cellWebsite.innerHTML = ``;
   }
 }
 

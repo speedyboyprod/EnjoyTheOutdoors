@@ -15,7 +15,7 @@ mountainsArray.forEach((mountain) => {
 mountainSelector.addEventListener("change", () => {
   let selectedMountain = mountainSelector.value;
   if (!selectedMountain) {
-    mountainTBody.innerHTML = " ";
+    mountainTBody.innerHTML = "";
     return;
   }
   const currentMountain = mountainsArray.filter(
@@ -30,12 +30,17 @@ function displayMtnTable(table, mountainsArray) {
 
   mountainsArray.forEach((mountain) => {
     addMtTable(table, mountain);
+    let mtnImg = document.createElement("img");
+
+    mtnImg.src = `./images/${mountain.img}`;
+    mountainImgDiv.appendChild(mtnImg);
   });
 }
 
 function emptyTable(table) {
   const tbody = table.querySelector("tbody");
   tbody.innerHTML = " ";
+  mountainImgDiv.innerHTML = " ";
 }
 
 //Add functions to add information and image
@@ -50,11 +55,14 @@ function addMtTable(table, mountain) {
   const cellMtnDescr = row.insertCell();
   cellMtnDescr.innerHTML = `${mountain.desc}`;
 
+  const ftToKm = (mountain.elevation * 0.3048) / 1000;
+
   const cellMtnElevation = row.insertCell();
-  cellMtnElevation.innerHTML = `${mountain.elevation}`;
+  cellMtnElevation.innerHTML = `${mountain.elevation}ft, ${ftToKm.toFixed(
+    2
+  )}km`;
 
   const cellMtnEffort = row.insertCell();
   cellMtnEffort.innerHTML = `${mountain.effort}`;
 }
 //Add img function
-function addMtnImg() {}

@@ -18,31 +18,40 @@
       <header>
         <nav>
           <ul>
-            <a href="index.html"><li>Home</li></a>
-            <a href="parks.html"><li>National Parks</li></a>
-            <a href="mountains.html"><li>Mountains</li></a>
+            <a href="index.html">Home</a>
+            <li>National Parks</li>
+            <a href="mountains.html">Mountains</a>
           </ul>
         </nav>
       </header>
     </div>
-    <div class="location-select">
-      <select id="parkByLocale">
-        <option value="">Select a State...</option>
-      </select>
-    </div>
-    <div class="type-select">
-      <select id="parkByType">
-        <option value="">Select a type...</option>
-      </select>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="location-select">
+            <select class="form-select" id="parkByLocale">
+              <option value="">Select a State...</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="type-select">
+            <select class="form-select" id="parkByType">
+              <option value="">Select a type...</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
     <div>
-      <table id="parkTable">
+      <table class="table" id="parkTable">
         <thead>
           <tr>
             <th>Site Name:</th>
             <th>Address:</th>
-            <th>Phone/Fax:</th>
+            <th>Phone:</th>
             <th>Longitude & Latitude:</th>
+            <th>Website:</th>
           </tr>
         </thead>
         <tbody id="parkInfo"></tbody>
