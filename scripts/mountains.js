@@ -15,6 +15,7 @@ mountainsArray.forEach((mountain) => {
 mountainSelector.addEventListener("change", () => {
   let selectedMountain = mountainSelector.value;
   if (!selectedMountain) {
+    mountainImgDiv.innerHTML = "";
     mountainTBody.innerHTML = "";
     return;
   }
@@ -65,4 +66,3 @@ function addMtTable(table, mountain) {
   const cellMtnEffort = row.insertCell();
   cellMtnEffort.innerHTML = `${mountain.effort}`;
 }
-//Add img function
